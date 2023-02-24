@@ -102,10 +102,10 @@ static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
 static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
 static const char *todocmd[]    = { "alacritty", "--class", "todo", "-e", "glow", "/home/kasetonix/todo.md", "-p", NULL };
 static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "1000x682", "--class", "lplan", /*"--zoom", "75%",*/ "--image-bg", "'#ffffff'", "/home/kasetonix/pics/lplan-current.png", NULL };
-static const char *tolearncmd[] = { "feh", "-xZN", "--geometry", "900x1600", "--class", "tolearn", /*"--zoom", "75%",*/ /*"--image-bg", "'#31343f'",*/ "/home/kasetonix/pics/tolearn/*", NULL };
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "width=2,color=#56b6c2,opacity=0,mode=edge;", "mv", "/home/kasetonix/scrot*", "/home/kasetonix/pics/screens", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
+static const char *jpvidscmd[]  = { "alacritty", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
 static const char *poweroff[]   = { "poweroff", NULL };
 static const char *reboot[]     = { "reboot", NULL };
 static const char *restart[]    = { "/home/kasetonix/.dwm/autostart.sh", NULL };
@@ -128,9 +128,9 @@ static Key keys[] = {
 	{ MODKEY,              XK_m,      spawn,          {.v = viscmd } },
 	{ MODKEY,              XK_t,      spawn,          {.v = todocmd} },
 	{ MODKEY,              XK_p,      spawn,          {.v = lplancmd } },
-	{ MODKEY,              XK_l,      spawn,          {.v = tolearncmd } },
 	{ 0,                   XK_Print,  spawn,          {.v = scrotcmd } },
 	{ MODKEY,              XK_u,      spawn,          {.v = defwallcmd } },
+	{ MODKEY,              XK_j,      spawn,          {.v = jpvidscmd } },
 	{ MODKEY|ShiftMask,    XK_u,      spawn,          {.v = altwallcmd } },
 	{ MODKEY,              XK_b,      togglebar,      {0} },
 	{ MODKEY,              XK_Down,   focusstack,     {.i = +1 } },

@@ -106,6 +106,7 @@ static const char *tolearncmd[] = { "feh", "-xZN", "--geometry", "900x1600", "--
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "width=2,color=#56b6c2,opacity=0,mode=edge;", "mv", "/home/kasetonix/scrot*", "/home/kasetonix/pics/screens", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
+static const char *jpvidscmd[]  = { "alacritty", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
 static const char *poweroff[]   = { "poweroff", NULL };
 static const char *reboot[]     = { "reboot", NULL };
 static const char *restart[]    = { "/home/kasetonix/.dwm/autostart.sh", NULL };
@@ -131,6 +132,7 @@ static Key keys[] = {
 	{ MODKEY,              XK_l,      spawn,          {.v = tolearncmd } },
 	{ 0,                   XK_Print,  spawn,          {.v = scrotcmd } },
 	{ MODKEY,              XK_u,      spawn,          {.v = defwallcmd } },
+	{ MODKEY,              XK_j,      spawn,          {.v = jpvidscmd } },
 	{ MODKEY|ShiftMask,    XK_u,      spawn,          {.v = altwallcmd } },
 	{ MODKEY,              XK_b,      togglebar,      {0} },
 	{ MODKEY,              XK_Down,   focusstack,     {.i = +1 } },
