@@ -8,13 +8,13 @@
 */ 
 
 /* appearance */
-static const unsigned int borderpx  = 4;  /* border pixel of windows */
+static const unsigned int borderpx  = 3;  /* border pixel of windows */
 static const unsigned int snap      = 15; /* snap pixel */
 static const int swallowfloating    = 0;  /* 1 means swallow floating windows by default */
 static const Gap default_gap        = {.isgap = 1, .realgap = 15, .gappx = 20};
 static const int showbar            = 1;  /* 0 means no bar */
 static const int topbar             = 1;  /* 0 means bottom bar */
-static const int barheight          = 40;
+static const int barheight          = 32;
 
 /* colors */
 static const char fgnorm[]             = "#5c6370";
@@ -48,9 +48,9 @@ static const unsigned int alphas[][3] = {
 
 /* fonts */
 //static const char *fonts[]    = { "mononoki Nerd Font:size=14", "monospace:size=14" };
-static const char *fonts[]    = { "JetBrains Mono Nerd Font:size=16", "monospace:size=13" };
+static const char *fonts[]    = { "JetBrains Mono Nerd Font:size=14", "monospace:size=13" };
 //static const char dmenufont[] = "mononoki Nerd Font:size=14";
-static const char dmenufont[] = "JetBrains Mono Nerd Font:size=16";
+static const char dmenufont[] = "JetBrains Mono Nerd Font:size=14";
 
 /* tagging */
 // static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -102,7 +102,6 @@ static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
 static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
 static const char *todocmd[]    = { "alacritty", "--class", "todo", "-e", "glow", "/home/kasetonix/todo.md", "-p", NULL };
 static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "1000x682", "--class", "lplan", /*"--zoom", "75%",*/ "--image-bg", "'#ffffff'", "/home/kasetonix/pics/lplan-current.png", NULL };
-static const char *tolearncmd[] = { "feh", "-xZN", "--geometry", "900x1600", "--class", "tolearn", /*"--zoom", "75%",*/ /*"--image-bg", "'#31343f'",*/ "/home/kasetonix/pics/tolearn/*", NULL };
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "width=2,color=#56b6c2,opacity=0,mode=edge;", "mv", "/home/kasetonix/scrot*", "/home/kasetonix/pics/screens", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
@@ -129,7 +128,6 @@ static Key keys[] = {
 	{ MODKEY,              XK_m,      spawn,          {.v = viscmd } },
 	{ MODKEY,              XK_t,      spawn,          {.v = todocmd} },
 	{ MODKEY,              XK_p,      spawn,          {.v = lplancmd } },
-	{ MODKEY,              XK_l,      spawn,          {.v = tolearncmd } },
 	{ 0,                   XK_Print,  spawn,          {.v = scrotcmd } },
 	{ MODKEY,              XK_u,      spawn,          {.v = defwallcmd } },
 	{ MODKEY,              XK_j,      spawn,          {.v = jpvidscmd } },
