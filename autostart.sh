@@ -1,8 +1,16 @@
 #!/bin/bash
+
+# Setting variables for scripts
+scrCapsL="/home/kasetonix/.scripts/capsl"
+scrBright="/home/kasetonix/.scripts/brightness"
+scrVolume="/home/kasetonix/.scripts/volume"
+scrBattery="/home/kasetonix/.scripts/battery"
+scrClock="/home/kasetonix/.scripts/clock"
+
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-xrandr --output eDP-1 --primary --mode 1920x1080 --refresh 144 --output HDMI-1-1 --mode 1920x1080 --refresh 75 --same-as eDP-1 & 
+xrandr --output eDP-1 --primary --mode 1920x1080 --refresh 60 --output HDMI-2 --mode 1920x1080 --refresh 75 --same-as eDP-1 & 
 feh --bg-fill /home/kasetonix/pics/walls/defwall --no-fehbg &
-DRI_PRIME=0 picom &
+picom &
 /usr/bin/dunst &
 xset s off
 
@@ -12,6 +20,6 @@ while [[ $(pidof dwm) != "" ]]; do
 done &
 
 while [[ $(pidof dwm) != "" ]]; do
-	xsetroot -name "$(/home/kasetonix/.scripts/capsl)$(/home/kasetonix/.scripts/volume)$(/home/kasetonix/.scripts/battery)$(/home/kasetonix/.scripts/clock)"
+    xsetroot -name "$($scrCapsL)$($scrVolume)$($scrBright)$($scrBattery)$($scrClock)"
     sleep 0.1
 done &
