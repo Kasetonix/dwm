@@ -22,5 +22,8 @@ Makes windows spawn on the center of the screen while in floating layout
 # fullgaps-toggle.diff
 Adds support for gaps
 
+# pertag-perseltag.diff
+Limits the changes to layout, mfact, barpos, and nmaster to selected tags
+
 # swallow.diff
 Adds swallowing windows - when running gui applications from the terminal it gets "swallowed" until the gui application has been closed
