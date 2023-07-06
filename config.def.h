@@ -77,7 +77,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile    }, /* first entry is default */
 	{ "><>",      NULL    }, /* no layout function means floating behavior */
-	{ "[F]",      monocle }, /* basically a fullscreen layout */
+	{ "[ ]",      monocle }, /* basically a fullscreen layout */
 };
 
 /* key definitions */
@@ -101,10 +101,11 @@ static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
 static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
 static const char *todocmd[]    = { "alacritty", "--class", "todo", "-e", "glow", "/home/kasetonix/todo.md", "-p", NULL };
 static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "1006x768", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
-static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "width=2,color=#56b6c2,opacity=85,mode=edge;", NULL };
+static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
 static const char *jpvidscmd[]  = { "alacritty", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
+static const char *musiccmd[]   = { "alacritty", "-e", "ranger", "/home/kasetonix/music/", NULL };
 static const char *poweroff[]   = { "poweroff", NULL };
 static const char *reboot[]     = { "reboot", NULL };
 static const char *restart[]    = { "/home/kasetonix/.dwm/autostart.sh", NULL };
@@ -124,8 +125,9 @@ static Key keys[] = {
 	{ MODKEY,              XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,              XK_r,      spawn,          {.v = rangercmd } },
 	{ MODKEY,              XK_Escape, spawn,          {.v = btopcmd } },
-	{ MODKEY,              XK_m,      spawn,          {.v = viscmd } },
-	{ MODKEY,              XK_t,      spawn,          {.v = todocmd} },
+	{ MODKEY|ShiftMask,    XK_m,      spawn,          {.v = viscmd } },
+	{ MODKEY,              XK_m,      spawn,          {.v = musiccmd } },
+	{ MODKEY,              XK_t,      spawn,          {.v = todocmd } },
 	{ MODKEY,              XK_p,      spawn,          {.v = lplancmd } },
 	{ 0,                   XK_Print,  spawn,          {.v = scrotcmd } },
 	{ MODKEY,              XK_u,      spawn,          {.v = defwallcmd } },
