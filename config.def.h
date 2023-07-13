@@ -53,8 +53,9 @@ static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=14", "monospace:
 static const char dmenufont[] = "JetBrainsMono Nerd Font:size=14";
 
 /* tagging */
-// static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+// static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "", "", "", "", "" };
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class

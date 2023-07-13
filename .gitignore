@@ -4,5 +4,8 @@
 !*/
 !Makefile
 
-# removing logs
-err.log
+# ignoring logs
+*.log
+
+# ignoring config.h (automatically gets created on build)
+config.h
