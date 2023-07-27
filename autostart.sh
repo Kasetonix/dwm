@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Setting variables for scripts
 scrDir="/home/kasetonix/.scripts"
@@ -7,6 +7,7 @@ scrCapsL="$scrDir/capsl"
 scrBright="$scrDir/brightness"
 scrVolume="$scrDir/volume"
 scrBattery="$scrDir/battery"
+scrBatteryNotification="$scrDir/battery-notification"
 scrClock="$scrDir/clock"
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -18,7 +19,7 @@ xset s off
 
 while [[ $(pidof dwm) != "" ]]; do
     setxkbmap pl &
-    sh ~/.xprofile
+    sh ~/.xprofile &
     sleep 30
 done &
 

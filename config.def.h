@@ -14,7 +14,7 @@ static const int swallowfloating    = 0;  /* 1 means swallow floating windows by
 static const Gap default_gap        = { .isgap = 1, .realgap = 15, .gappx = 20 };
 static const int showbar            = 1;  /* 0 means no bar */
 static const int topbar             = 1;  /* 0 means bottom bar */
-static const int barheight          = 32;
+static const int barheight          = 40;
 
 /* colors */
 static const char fgnorm[]             = "#5c6370";
@@ -48,13 +48,14 @@ static const unsigned int alphas[][3] = {
 
 /* fonts */
 //static const char *fonts[]    = { "mononoki Nerd Font:size=14", "monospace:size=14" };
-static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=14", "monospace:size=13" };
+static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=16", "monospace:size=13" };
 //static const char dmenufont[] = "mononoki Nerd Font:size=14";
-static const char dmenufont[] = "JetBrainsMono Nerd Font:size=14";
+static const char dmenufont[] = "JetBrainsMono Nerd Font:size=16";
 
 /* tagging */
 // static const char *tags[] = { "1", "2", "3", "4", "5" };
-static const char *tags[] = { "", "", "", "", "" };
+// static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -75,10 +76,10 @@ static const int resizehints    = 1;    /* 1 means respect size hints in tiled r
 static const int lockfullscreen = 1;    /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile    }, /* first entry is default */
-	{ "><>",      NULL    }, /* no layout function means floating behavior */
-	{ "[ ]",      monocle }, /* basically a fullscreen layout */
+	/* symbol  arrange function */
+	{ "[]=",   tile    }, /* first entry is default */
+	{ "><>",   NULL    }, /* no layout function means floating behavior */
+	{ "[ ]",   monocle }, /* basically a fullscreen layout */
 };
 
 /* key definitions */
@@ -95,7 +96,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", bgnorm, "-nf", fgnorm, "-sb", bgsel, "-sf", fgsel, NULL };
-static const char *roficmd[]    = { "rofi", "-show", "drun", "-display-drun", "Search", "-show-icons", "-scroll-method", "1", NULL };
+static const char *roficmd[]    = { "rofi", "-show", "drun", "-display-drun", "➜ ", "-show-icons", "-scroll-method", "1", NULL };
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *rangercmd[]  = { "alacritty", "-e", "ranger", NULL };
 static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
