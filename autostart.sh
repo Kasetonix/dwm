@@ -14,10 +14,12 @@ xset s off
 while [[ $(pidof dwm) != "" ]]; do
     setxkbmap pl &
     sh ~/.xprofile &
-    sleep 30
+    sleep 20
 done &
 
 while [[ $(pidof dwm) != "" ]]; do
     xsetroot -name "$($statusbar)"
     sleep 0.1
-done &
+done
+
+exit 0

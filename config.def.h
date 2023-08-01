@@ -14,7 +14,8 @@ static const int swallowfloating    = 0;  /* 1 means swallow floating windows by
 static const Gap default_gap        = { .isgap = 1, .realgap = 15, .gappx = 20 };
 static const int showbar            = 1;  /* 0 means no bar */
 static const int topbar             = 1;  /* 0 means bottom bar */
-static const int barheight          = 40;
+static const int barheight          = 32;
+// static const int barheight          = 40;
 
 /* colors */
 static const char fgnorm[]             = "#5c6370";
@@ -47,15 +48,15 @@ static const unsigned int alphas[][3] = {
 };
 
 /* fonts */
-//static const char *fonts[]    = { "mononoki Nerd Font:size=14", "monospace:size=14" };
-static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=16", "monospace:size=13" };
-//static const char dmenufont[] = "mononoki Nerd Font:size=14";
-static const char dmenufont[] = "JetBrainsMono Nerd Font:size=16";
+static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=14", "monospace:size=13" };
+// static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=16", "monospace:size=13" };
+static const char dmenufont[] = "JetBrainsMono Nerd Font:size=14";
+// static const char dmenufont[] = "JetBrainsMono Nerd Font:size=16";
 
 /* tagging */
 // static const char *tags[] = { "1", "2", "3", "4", "5" };
-// static const char *tags[] = { "", "", "", "", "" };
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "" };
+// static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -65,6 +66,7 @@ static const Rule rules[] = {
 	/* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "lplan",     NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "record.sh", NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ "todo",      NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -101,11 +103,11 @@ static const char *termcmd[]    = { "alacritty", NULL };
 static const char *rangercmd[]  = { "alacritty", "-e", "ranger", NULL };
 static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
 static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
-static const char *todocmd[]    = { "alacritty", "--class", "todo", "-e", "glow", "/home/kasetonix/todo.md", "-p", NULL };
+static const char *recordcmd[]  = { "alacritty", "--class", "record.sh", "-o", "cursor.style=Beam", "-o", "window.opacity=0.5", "-o", "window.dimensions.lines=6", "-o", "window.dimensions.columns=60", "-o", "font.size=10", "-e", "/home/kasetonix/.scripts/record.sh", NULL};
 static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "1006x768", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
-static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
+static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
 static const char *jpvidscmd[]  = { "alacritty", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
 static const char *musiccmd[]   = { "alacritty", "-e", "ranger", "/home/kasetonix/music/", NULL };
 static const char *poweroff[]   = { "poweroff", NULL };
@@ -129,7 +131,7 @@ static Key keys[] = {
 	{ MODKEY,              XK_Escape, spawn,          {.v = btopcmd } },
 	{ MODKEY|ShiftMask,    XK_m,      spawn,          {.v = viscmd } },
 	{ MODKEY,              XK_m,      spawn,          {.v = musiccmd } },
-	{ MODKEY,              XK_t,      spawn,          {.v = todocmd } },
+	{ MODKEY|ShiftMask,    XK_r,      spawn,          {.v = recordcmd } },
 	{ MODKEY,              XK_p,      spawn,          {.v = lplancmd } },
 	{ 0,                   XK_Print,  spawn,          {.v = scrotcmd } },
 	{ MODKEY,              XK_u,      spawn,          {.v = defwallcmd } },
