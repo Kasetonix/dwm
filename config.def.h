@@ -66,7 +66,7 @@ static const Rule rules[] = {
 	/* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "lplan",     NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "record.sh", NULL,     NULL,           0,         1,          1,           0,        -1 },
+	{ "shrec", NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ "todo",      NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -103,7 +103,7 @@ static const char *termcmd[]    = { "alacritty", NULL };
 static const char *rangercmd[]  = { "alacritty", "-e", "ranger", NULL };
 static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
 static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
-static const char *recordcmd[]  = { "alacritty", "--class", "record.sh", "-o", "cursor.style=Beam", "-o", "window.opacity=0.5", "-o", "window.dimensions.lines=6", "-o", "window.dimensions.columns=60", "-o", "font.size=10", "-e", "/home/kasetonix/.scripts/record.sh", NULL};
+static const char *shreccmd[]  = { "/home/kasetonix/.scripts/shrec-launch.sh", NULL };
 static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "1006x768", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
@@ -123,55 +123,69 @@ static const char *brir[]  = { "brightnessctl", "set", "+10%", NULL };
 static const char *bril[]  = { "brightnessctl", "set", "10%-", NULL };
 
 static Key keys[] = {
-	/* modifier            key        function        argument */
-	{ MODKEY,              XK_e,      spawn,          {.v = roficmd } },
-	{ MODKEY,              XK_slash,  spawn,          {.v = roficmd } },
-	{ MODKEY,              XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,              XK_r,      spawn,          {.v = rangercmd } },
-	{ MODKEY,              XK_Escape, spawn,          {.v = btopcmd } },
-	{ MODKEY|ShiftMask,    XK_m,      spawn,          {.v = viscmd } },
-	{ MODKEY,              XK_m,      spawn,          {.v = musiccmd } },
-	{ MODKEY|ShiftMask,    XK_r,      spawn,          {.v = recordcmd } },
-	{ MODKEY,              XK_p,      spawn,          {.v = lplancmd } },
-	{ 0,                   XK_Print,  spawn,          {.v = scrotcmd } },
-	{ MODKEY,              XK_u,      spawn,          {.v = defwallcmd } },
-	{ MODKEY,              XK_j,      spawn,          {.v = jpvidscmd } },
-	{ MODKEY|ShiftMask,    XK_u,      spawn,          {.v = altwallcmd } },
-	{ MODKEY,              XK_b,      togglebar,      {0} },
-	{ MODKEY,              XK_Down,   focusstack,     {.i = +1 } },
-	{ MODKEY,              XK_Right,  focusstack,     {.i = +1 } },
-	{ MODKEY,              XK_Up,     focusstack,     {.i = -1 } },
-	{ MODKEY,              XK_Left,   focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,    XK_Left,   incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,    XK_Right,  incnmaster,     {.i = -1 } },
-	{ MODKEY,              XK_comma,  setmfact,       {.f = -0.05} },
-	{ MODKEY,              XK_period, setmfact,       {.f = +0.05} },
-	{ MODKEY,              XK_q,      killclient,     {0} },
-	{ MODKEY,              XK_a,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,              XK_s,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,              XK_d,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,    XK_s,      togglefloating, {0} },
-	{ MODKEY,              XK_f,      togglefullscr,  {0} },
-	{ MODKEY,              XK_space,  zoom,           {0} },
-	{ MODKEY,              XK_Tab,    view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,    XK_Tab,    tag,            {.ui = ~0 } },
-	{ MODKEY,              XK_g,      setgaps,        {.i = GAP_TOGGLE} },
-	TAGKEYS(               XK_1,                      0)
-	TAGKEYS(               XK_2,                      1)
-	TAGKEYS(               XK_3,                      2)
-	TAGKEYS(               XK_4,                      3)
-	TAGKEYS(               XK_5,                      4)
-	{ MODKEY|Mod1Mask,     XK_q,      spawn,          {.v = poweroff } },
-	{ MODKEY|Mod1Mask,     XK_w,      spawn,          {.v = reboot } },
-	{ MODKEY|Mod1Mask,     XK_e,      quit,           {0} },
-	{ MODKEY|Mod1Mask,     XK_r,      spawn,          {.v = restart } },
+	/* modifier key        function  argument */
+	{ MODKEY,   XK_e,      spawn, {  .v = roficmd } },
+	{ MODKEY,   XK_slash,  spawn, {  .v = roficmd } },
+	{ MODKEY,   XK_Return, spawn, {  .v = termcmd } },
+
+    /* program keybinds */
+	{ MODKEY,           XK_r,      spawn, {  .v = rangercmd    } },
+	{ MODKEY,           XK_Escape, spawn, {  .v = btopcmd      } },
+	{ MODKEY,           XK_m,      spawn, {  .v = musiccmd     } },
+	{ MODKEY|ShiftMask, XK_m,      spawn, {  .v = viscmd       } },
+	{ MODKEY|ShiftMask, XK_r,      spawn, {  .v = shreccmd     } },
+	{ MODKEY,           XK_p,      spawn, {  .v = lplancmd     } },
+	{ 0,                XK_Print,  spawn, {  .v = scrotcmd     } },
+	{ MODKEY,           XK_u,      spawn, {  .v = defwallcmd   } },
+	{ MODKEY|ShiftMask, XK_u,      spawn, {  .v = altwallcmd   } },
+	{ MODKEY,           XK_j,      spawn, {  .v = jpvidscmd    } },
+
+    /* Changing focus */
+	{ MODKEY,              XK_Down,   focusstack,     {  .i = +1           } },
+	{ MODKEY,              XK_Right,  focusstack,     {  .i = +1           } },
+	{ MODKEY,              XK_Up,     focusstack,     {  .i = -1           } },
+	{ MODKEY,              XK_Left,   focusstack,     {  .i = -1           } },
+
+    /* Changing the layout */
+	{ MODKEY,              XK_a,      setlayout,      {  .v = &layouts[0]  } },
+	{ MODKEY,              XK_s,      setlayout,      {  .v = &layouts[1]  } },
+	{ MODKEY,              XK_d,      setlayout,      {  .v = &layouts[2]  } },
+
+    /* Modifying the layout */
+	{ MODKEY|ShiftMask,    XK_Left,   incnmaster,     {  .i = +1           } },
+	{ MODKEY|ShiftMask,    XK_Right,  incnmaster,     {  .i = -1           } },
+	{ MODKEY,              XK_comma,  setmfact,       {  .f = -0.05        } },
+	{ MODKEY,              XK_period, setmfact,       {  .f = +0.05        } },
+	{ MODKEY,              XK_space,  zoom,           {  0                 } },
+	{ MODKEY,              XK_b,      togglebar,      {  0                 } },
+	{ MODKEY,              XK_g,      setgaps,        {  .i = GAP_TOGGLE   } },
+
+    /* Modifying the active window */
+	{ MODKEY,              XK_q,      killclient,     { 0 } },
+	{ MODKEY|ShiftMask,    XK_s,      togglefloating, { 0 } },
+	{ MODKEY,              XK_f,      togglefullscr,  { 0 } },
+
+    /* shutdown, reboot, etc. */
+	{ MODKEY|Mod1Mask,     XK_q,      spawn,          {  .v = poweroff     } },
+	{ MODKEY|Mod1Mask,     XK_w,      spawn,          {  .v = reboot       } },
+	{ MODKEY|Mod1Mask,     XK_e,      quit,           {  0                 } },
+	{ MODKEY|Mod1Mask,     XK_r,      spawn,          {  .v = restart      } },
 
 	/* media keys */
-	{ 0, XF86XK_AudioRaiseVolume,     spawn,          {.v = volr } },
-	{ 0, XF86XK_AudioLowerVolume,     spawn,          {.v = voll } },
-	{ 0, XF86XK_AudioMute,            spawn,          {.v = volm } },
-	{ 0, XF86XK_MonBrightnessUp,      spawn,          {.v = brir } },
-	{ 0, XF86XK_MonBrightnessDown,    spawn,          {.v = bril } },
+	{ 0, XF86XK_AudioRaiseVolume,  spawn, {.v = volr } },
+	{ 0, XF86XK_AudioLowerVolume,  spawn, {.v = voll } },
+	{ 0, XF86XK_AudioMute,         spawn, {.v = volm } },
+	{ 0, XF86XK_MonBrightnessUp,   spawn, {.v = brir } },
+	{ 0, XF86XK_MonBrightnessDown, spawn, {.v = bril } },
+
+    /* tags */
+	{ MODKEY,           XK_Tab, view, { .ui = ~0 } },
+	{ MODKEY|ShiftMask, XK_Tab, tag,  { .ui = ~0 } },
+	TAGKEYS(XK_1, 0)
+	TAGKEYS(XK_2, 1)
+	TAGKEYS(XK_3, 2)
+	TAGKEYS(XK_4, 3)
+	TAGKEYS(XK_5, 4)
 };
 
 /* button definitions */
