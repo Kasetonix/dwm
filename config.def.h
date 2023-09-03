@@ -66,7 +66,7 @@ static const Rule rules[] = {
 	/* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "lplan",     NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "ffrec", NULL,     NULL,           0,         1,          1,           0,        -1 },
+	{ "ffrec",     NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ "todo",      NULL,     NULL,           0,         1,          1,           0,        -1 },
 	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -104,7 +104,7 @@ static const char *rangercmd[]  = { "alacritty", "-e", "ranger", NULL };
 static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
 static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
 static const char *ffreccmd[]  = { "/home/kasetonix/.scripts/ffrec-launch.sh", NULL };
-static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "1006x768", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
+static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "881x675", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
