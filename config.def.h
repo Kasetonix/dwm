@@ -79,10 +79,17 @@ static const int lockfullscreen = 1;    /* 1 will force focus on the fullscreen 
 
 static const Layout layouts[] = {
 	/* symbol  arrange function */
-	{ "[]=",   tile    }, /* first entry is default */
-	{ "><>",   NULL    }, /* no layout function means floating behavior */
-	{ "[ ]",   monocle }, /* basically a fullscreen layout */
+	{ " ",   tile    }, /* first entry is default */
+	{ " ",   NULL    }, /* no layout function means floating behavior */
+	{ " ",   monocle }, /* basically a fullscreen layout */
 };
+
+// static const Layout layouts[] = {
+// 	/* symbol  arrange function */
+// 	{ "[]=",   tile    }, /* first entry is default */
+// 	{ "><>",   NULL    }, /* no layout function means floating behavior */
+// 	{ "[ ]",   monocle }, /* basically a fullscreen layout */
+// };
 
 /* key definitions */
 #define MODKEY Mod4Mask
