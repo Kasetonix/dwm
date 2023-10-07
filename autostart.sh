@@ -21,5 +21,3 @@ while [[ $(pidof dwm) != "" ]]; do
     xsetroot -name "$($statusbar)" &
     sleep 0.1
 done
-
-exit 0
