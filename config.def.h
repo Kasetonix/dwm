@@ -50,9 +50,11 @@ static const unsigned int alphas[][3] = {
 
 /* fonts */
 static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=14", "monospace:size=13" };
-// static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=16", "monospace:size=13" };
 static const char dmenufont[] = "JetBrainsMono Nerd Font:size=14";
+// static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=16", "monospace:size=13" };
 // static const char dmenufont[] = "JetBrainsMono Nerd Font:size=16";
+// static const char *fonts[]    = { "Victor Mono SemiBold:size=16", "monospace:size=13" };
+// static const char dmenufont[] = "Victor Mono SemiBold:size=16";
 
 /* tagging */
 // static const char *tags[] = { "1", "2", "3", "4", "5" };
@@ -64,13 +66,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "st", NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "lplan",     NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "ffrec",     NULL,     NULL,           0,         1,          1,           0,        -1 },
-	{ "todo",      NULL,     NULL,           0,         1,          1,           0,        -1 },
-	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class        instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Alacritty",  NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "st",         NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "lplan",      NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "ffrec",      NULL,     NULL,           0,         1,          1,           0,        -1 },
+	{ "todo",       NULL,     NULL,           0,         1,          1,           0,        -1 },
+	{ NULL,         NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -106,14 +108,9 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", bgnorm, "-nf", fgnorm, "-sb", bgsel, "-sf", fgsel, NULL };
-static const char *roficmd[]    = { "rofi", "-show", "drun", "-display-drun", "➜ ", "-show-icons", "-scroll-method", "1", NULL };
-// static const char *termcmd[]    = { "alacritty", NULL };
-// static const char *rangercmd[]  = { "alacritty", "-e", "ranger", NULL };
-// static const char *btopcmd[]    = { "alacritty", "-e", "btop", NULL };
-// static const char *viscmd[]     = { "alacritty", "-e", "vis", NULL };
-// static const char *jpvidscmd[]  = { "alacritty", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
-// static const char *musiccmd[]   = { "alacritty", "-e", "ranger", "/home/kasetonix/music/", NULL };
+static const char *dmenucmd[]   = { "/home/kasetonix/.scripts/dmenu-drun", NULL };
+static const char *powermenucmd[] = { "/home/kasetonix/.scripts/dmenu-powermenu", NULL };
+// static const char *roficmd[]    = { "rofi", "-show", "drun", "-display-drun", "➜ ", "-show-icons", "-scroll-method", "1", NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
 static const char *btopcmd[]    = { "st", "-e", "btop", NULL };
@@ -121,13 +118,10 @@ static const char *viscmd[]     = { "st", "-e", "vis", NULL };
 static const char *jpvidscmd[]  = { "st", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
 static const char *musiccmd[]   = { "st", "-e", "ranger", "/home/kasetonix/music/", NULL };
 static const char *ffreccmd[]  = { "/home/kasetonix/.scripts/ffrec-launch.sh", NULL };
-static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "881x675", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
+static const char *lplancmd[]   = { "feh", "-xZN", "--geometry", "880x674", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
 static const char *scrotcmd[]   = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
 static const char *altwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[] = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
-static const char *poweroff[]   = { "poweroff", NULL };
-static const char *reboot[]     = { "reboot", NULL };
-static const char *restart[]    = { "/home/kasetonix/.dwm/autostart.sh", NULL };
 
 /* media keys */
 #include <X11/XF86keysym.h>
@@ -139,8 +133,8 @@ static const char *bril[]  = { "brightnessctl", "set", "10%-", NULL };
 
 static Key keys[] = {
 	/* modifier key        function  argument */
-	{ MODKEY,   XK_e,      spawn, {  .v = roficmd } },
-	{ MODKEY,   XK_slash,  spawn, {  .v = roficmd } },
+	{ MODKEY,   XK_e,      spawn, {  .v = dmenucmd } },
+	{ MODKEY,   XK_slash,  spawn, {  .v = dmenucmd } },
 	{ MODKEY,   XK_Return, spawn, {  .v = termcmd } },
 
     /* program keybinds */
@@ -181,10 +175,7 @@ static Key keys[] = {
 	{ MODKEY,              XK_f,      togglefullscr,  { 0 } },
 
     /* shutdown, reboot, etc. */
-	{ MODKEY|Mod1Mask,     XK_q,      spawn,          {  .v = poweroff     } },
-	{ MODKEY|Mod1Mask,     XK_w,      spawn,          {  .v = reboot       } },
-	{ MODKEY|Mod1Mask,     XK_e,      quit,           {  0                 } },
-	{ MODKEY|Mod1Mask,     XK_r,      spawn,          {  .v = restart      } },
+	{ MODKEY|Mod1Mask,     XK_q,      spawn,          {  .v = powermenucmd } },
 
 	/* media keys */
 	{ 0, XF86XK_AudioRaiseVolume,  spawn, {.v = volr } },
@@ -209,7 +200,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkStatusText,        0,              Button1,        spawn,          {.v = roficmd } },
+	{ ClkStatusText,        0,              Button1,        spawn,          {.v = dmenucmd } },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },

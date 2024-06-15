@@ -1,5 +1,5 @@
 # **DWM**
-This is my dwm build, based on dwm 6.3
+My suckless's **DWM** (Dynamic Window Manager) build, based on dwm 6.3
 
 # **PATCHES**
 Explanations for all patches in this build (located in ./patches)
