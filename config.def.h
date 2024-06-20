@@ -53,8 +53,9 @@ static const unsigned int alphas[][3] = {
 // static const char dmenufont[] = "JetBrainsMono Nerd Font:size=14";
 // static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=16", "monospace:size=13" };
 // static const char dmenufont[] = "JetBrainsMono Nerd Font:size=16";
-static const char *fonts[]    = { "Victor Mono SemiBold:size=16", "JetBrainsMono Nerd Font:size=14", "monospace:size=13" };
-static const char dmenufont[] = "Victor Mono SemiBold:size=16";
+// static const char *fonts[]    = { "Victor Mono SemiBold:size=14", "JetBrainsMono Nerd Font:size=14", "monospace:size=13" };
+static const char *fonts[]    = { "Victor Mono SemiBold:size=14", "JetBrainsMono Nerd Font:size=14", "monospace:size=13" };
+static const char dmenufont[] = "Victor Mono SemiBold:size=14";
 
 /* tagging */
 // static const char *tags[] = { "1", "2", "3", "4", "5" };
