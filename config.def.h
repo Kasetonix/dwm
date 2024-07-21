@@ -101,13 +101,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]     = { "/home/kasetonix/.scripts/dmenu-drun", NULL };
-static const char *powermenucmd[] = { "/home/kasetonix/.scripts/dmenu-powermenu", NULL };
+static const char *dmenucmd[]     = { "/home/kasetonix/.local/bin/scripts/dmenu-drun", NULL };
+static const char *powermenucmd[] = { "/home/kasetonix/.local/bin/scripts/dmenu-powermenu", NULL };
 static const char *termcmd[]      = { "st", NULL };
 static const char *rangercmd[]    = { "st", "-e", "ranger", NULL };
 static const char *btopcmd[]      = { "st", "-e", "btop", NULL };
 static const char *jpvidscmd[]    = { "st", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
-static const char *ffreccmd[]     = { "/home/kasetonix/.scripts/ffrec-launch.sh", NULL };
+static const char *ffreccmd[]     = { "/home/kasetonix/.local/bin/scripts/ffrec-launch.sh", NULL };
 static const char *lplancmd[]     = { "feh", "-xZN", "--geometry", "880x674", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
 static const char *scrotcmd[]     = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
 static const char *altwallcmd[]   = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
