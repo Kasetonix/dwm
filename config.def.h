@@ -108,8 +108,8 @@ static const char *rangercmd[]    = { "st", "-e", "ranger", NULL };
 static const char *btopcmd[]      = { "st", "-e", "btop", NULL };
 static const char *jpvidscmd[]    = { "st", "-e", "ranger", "/home/kasetonix/vids/jp", NULL };
 static const char *ffreccmd[]     = { "/home/kasetonix/.local/bin/scripts/ffrec-launch.sh", NULL };
-static const char *lplancmd[]     = { "feh", "-xZN", "--geometry", "880x674", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
-static const char *scrotcmd[]     = { "scrot", "scrot-%H.%M.%S.png", "-s", "-p", "-l", "mode=edge,width=2,color=#56b6c2,opacity=85", NULL };
+static const char *lplancmd[]     = { "feh", "-ZN", "--geometry", "1155x682", "--class", "lplan", /*"--zoom", "75%",*/ "/home/kasetonix/pics/lplan-current.png", NULL };
+static const char *maimcmd[]      = { "/home/kasetonix/.local/bin/scripts/maim.sh", NULL };
 static const char *altwallcmd[]   = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/altwall", "--no-fehbg", NULL };
 static const char *defwallcmd[]   = { "feh", "--bg-fill", "/home/kasetonix/pics/walls/defwall", "--no-fehbg", NULL };
 
@@ -132,7 +132,7 @@ static Key keys[] = {
 	{ MODKEY,           XK_Escape, spawn, { .v = btopcmd    } },
 	{ MODKEY|ShiftMask, XK_r,      spawn, { .v = ffreccmd   } },
 	{ MODKEY,           XK_p,      spawn, { .v = lplancmd   } },
-	{ 0,                XK_Print,  spawn, { .v = scrotcmd   } },
+	{ 0,                XK_Print,  spawn, { .v = maimcmd    } },
 	{ MODKEY,           XK_u,      spawn, { .v = defwallcmd } },
 	{ MODKEY|ShiftMask, XK_u,      spawn, { .v = altwallcmd } },
 	{ MODKEY,           XK_j,      spawn, { .v = jpvidscmd  } },
