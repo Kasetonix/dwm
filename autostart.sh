@@ -3,6 +3,7 @@
 # Setting variables for scripts
 scr_path="$HOME/.local/bin/scripts"
 statusbar="$scr_path/statusbar"
+capsl="$scr_path/capsl.sh"
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 feh --bg-fill /home/kasetonix/pics/walls/defwall --no-fehbg
@@ -21,10 +22,10 @@ done &
 while [[ $(pidof dwm) != "" ]]; do
     [ -f /home/kasetonix/discord_utils.log ] && rm /home/kasetonix/discord_utils.log
     [ -f /home/kasetonix/discord_krisp.log ] && rm /home/kasetonix/discord_krisp.log
-    sleep 1
+    sleep 5
 done &
 
 while [[ $(pidof dwm) != "" ]]; do
-    xsetroot -name "$($statusbar)"
+    xsetroot -name "$($capsl) $($statusbar)"
     sleep 0.1
 done
